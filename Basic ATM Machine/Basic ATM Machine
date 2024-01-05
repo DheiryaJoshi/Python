@@ -1,0 +1,50 @@
+balance = 100000                          #Initial balance
+
+def atm_menu():                           #defining atm menu fucntion
+    print("1. Check Balance")
+    print("2. Withdraw Amount")
+    print("3. Deposit Funds")
+    print("4. Cancel/Quit")
+    
+def check_balance():                      #defining Check balance function 
+    print(f"Your balance is Rs. {balance}.")
+    
+def withdraw_amount(amount):              #defining Withdraw Amount function
+    global balance
+    if amount <= balance:
+        balance -= amount
+        print(f"Withdraw Amount: Rs. {amount}. Your new balance is Rs. {balance}.")
+    else:
+        print(f"Insufficient Balance. Transaction cancelled.")
+
+def Deposit_amount(amount):               #defining Deposit Amount function
+    global balance
+    balance += amount
+    print(f"Deposited Amount: Rs. {amount}. Your new balance is Rs. {balance}.")
+        
+def main_program():                       #defining main function
+    while True:
+        atm_menu()
+        user_input = int(input("Enter your choice from 1-4: "))
+        
+        if user_input == 1:
+            check_balance()
+            print("")
+        elif user_input == 2:
+            amount = float(input("Enter the amount to Withdraw: Rs. "))
+            withdraw_amount(amount)
+            print("")
+        elif user_input == 3:
+            amount = float(input("Enter the amount to Deposit: Rs. "))
+            Deposit_amount(amount)
+            print("")
+        elif user_input == 4:
+            print("Thank you for using the ATM service. Have a good day.")
+            break
+            print("")
+        else:
+            print("Invalid input. Please select a number from 1 to 4.")
+            
+if __name__ =="__main__":
+    main_program()
+    
