@@ -1,0 +1,77 @@
+#creating a dictionary with currency names for user to identify easily
+currency_names = {
+    'USD': 'United States Dollar',
+    'INR': 'Indian Rupee',
+    'JPY': 'Japanese Yen',
+    'GBP': 'British Pound',
+    'CHF': 'Swiss Franc',
+    'AUD': 'Australian Dollar',
+    'CAD': 'Canadian Dollar',
+    'CNY': 'Chinese Yuan Renminbi',
+    'NZD': 'New Zealand Dollar',
+    'KRW': 'South Korean Won',
+    'SGD': 'Singapore Dollar',
+    'ZAR': 'South African Rand',
+    'TRY': 'Turkish Lira',
+    'MYR': 'Malaysian Ringgit',
+}
+
+#creating a dictionary with conversion rates from one currency to another
+conversion_rates = {           
+    1: ("USD", "INR", 83.19),
+    2: ("INR", "USD", 0.012),
+    3: ("USD", "JPY", 141.03),
+    4: ("JPY", "USD", 0.007),
+    5: ("USD", "GBP", 0.78),
+    6: ("GBP", "USD", 1.27),
+    7: ("USD", "CHF", 0.84),
+    8: ("CHF", "USD", 1.19),
+    9: ("USD", "AUD", 1.46),
+    10: ("AUD", "USD", 0.68),
+    11: ("USD", "CAD", 1.32),
+    12: ("CAD", "USD", 0.75),
+    13: ("USD", "CNY", 7.08),
+    14: ("CNY", "USD", 0.14),
+    15: ("USD", "NZD", 1.58),
+    16: ("NZD", "USD", 0.63),
+    17: ("USD", "KRW", 1297.30),
+    18: ("KRW", "USD", 0.00077),
+    19: ("USD", "SGD", 1.32),
+    20: ("SGD", "USD", 0.75),
+    21: ("USD", "ZAR", 18.30),
+    22: ("ZAR", "USD", 0.055),
+    23: ("USD", "TRY", 29.47),
+    24: ("TRY", "USD", 0.033),
+    25: ("USD", "MYR", 4.59),
+    26: ("MYR", "USD", 0.21)
+}
+
+def show_available_conversions():                            #display list of available conversions to select from
+    print("Available currency conversions: ")
+    print("")
+    for key, (currency_1, currency_2, rate) in conversion_rates.items():
+        print(f"{key}. {currency_1} ({currency_names[currency_1]}) to {currency_2} ({currency_names[currency_2]})")
+        
+def convert_currency():                                         #code for converting input amount as per selected conversion key 
+    try:
+        show_available_conversions() 
+        print("")
+        user_input = int(input("Enter the corresponding number to desired currency conversion: "))     #taking user input
+        print("")
+        
+        if user_input in conversion_rates:                                   #validating user input against dictionary
+            currency_1, currency_2, rate = conversion_rates[user_input]
+            amount = float(input("Enter the amount to convert: "))
+            print("")
+            
+            converted_amount = amount * rate
+            print(f"{amount} {currency_1} ({currency_names[currency_1]}) is equal to {converted_amount:.2f} {currency_2} ({currency_names[currency_2]})")
+        else:                                                                 
+            print("Error: invalid input.")                                               
+    except ValueError:                                                        #Error handling
+        print("Error: Please enter a valid number.")
+        
+if __name__ == "__main__":
+    convert_currency()
+        
+    
